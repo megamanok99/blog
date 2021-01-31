@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {Link} from 'react-router-dom';
 import '../App.css';
 function HomePage (props){
     
@@ -18,7 +19,10 @@ function HomePage (props){
             <Card.Text>
               {obj.text}
             </Card.Text>
-            <Button variant="primary" href={`/${obj.id}`}>{obj.name}</Button>
+            <Link variant="primary" 
+            to={`post/${obj.id}`}
+            onClick={()=>props.getOneCard(obj.id)}
+            >{obj.name}</Link>
           </Card.Body>
         </Card>
         </Col>

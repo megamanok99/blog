@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import {Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import FullPostPage from './pages/FullPostPage';
@@ -27,31 +28,39 @@ function App() {
     
     const road=window.location.pathname;
     console.log(road);
+    
   }
+  const getOneCard=(id)=>{
+
+  }
+  
   React.useEffect(()=>{
   getCards();
   getRoad();
+  
   },[]);
+  
+  
 
   return (
     <div className="App">
      
-     <FullPostPage/>
+    
      <Navigation/>
-        {
-          
-          window.location.pathname==='/test' ? <AboutPage/> :  
-          loading===false ? <HomePage cards={cards}/> :
+       
+         <Route exact path='/'>
+          { loading===false ?<HomePage cards={cards} getOneCard={getOneCard}/> :
           <Space size="middle">
           <Spin size="large" />
-              </Space>
-              
-            
-        }
-        
-        
-      
-      
+          </Space>
+         }
+        </Route>
+        <Route path='/test'>
+          <AboutPage getRoad={getRoad} />
+        </Route>
+        <Route path='/post/:id' component={FullPostPage}/>
+    
+ 
 
     </div>
   );

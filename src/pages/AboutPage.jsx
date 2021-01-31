@@ -1,7 +1,5 @@
 
 function aboutPage(){
-
-
     return(
         <div>Hello</div>
 
